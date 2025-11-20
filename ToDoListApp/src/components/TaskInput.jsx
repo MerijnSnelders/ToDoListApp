@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
-import { useGlobalState } from "../GlobalState";
+import { useGlobalState } from "../state/GlobalState";
 
 const TaskInput = () => {
   const { tasks } = useGlobalState();
@@ -34,7 +34,7 @@ const TaskInput = () => {
 
   // --- Render ---
   return (
-    <div className="flex space-x-3 mb-8 p-4 bg-gray-50 rounded-2xl shadow-inner">
+    <div className="task-input-container">
       <input
         type="text"
         value={inputText}

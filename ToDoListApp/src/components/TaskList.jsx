@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalState } from "../GlobalState";
+import { useGlobalState } from "../state/GlobalState";
 import TaskItem from "./TaskItem";
 
 const TaskList = () => {
@@ -14,7 +14,7 @@ const TaskList = () => {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="task-list">
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Check, Pencil, Trash2, Save } from "lucide-react";
-import { useGlobalState } from "../GlobalState";
+import { useGlobalState } from "../state/GlobalState";
 
 const TaskItem = ({ task }) => {
   const { tasks } = useGlobalState();
@@ -52,16 +52,13 @@ const TaskItem = ({ task }) => {
 
   return (
     <div
-      className={`
-        flex items-center p-4 mb-2 border border-gray-200 rounded-xl transition-all duration-300
-        ${task.completed ? "bg-green-50/60 opacity-80" : "bg-white hover:shadow-md"}
-      `}
+      className={`task-item ${task.completed ? "completed" : ""}`}
     >
       {/* Checkbox */}
       <button
         onClick={() => toggleTask(task.id)}
         className={`
-          w-8 h-8 flex items-center justify-center rounded-full border-2 flex-shrink-0 transition
+          w-8 h-8 flex items-center justify-center rounded-full border-2 transition-colors duration-200 flex-shrink-0
           ${
             task.completed
               ? "bg-green-500 border-green-500 text-white shadow-md"

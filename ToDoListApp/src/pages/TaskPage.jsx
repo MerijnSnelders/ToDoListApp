@@ -4,7 +4,7 @@ import TaskList from "../components/TaskList";
 
 const TasksPage = () => {
   return (
-    <div className="max-w-xl mx-auto p-6">
+    <div className="app-container tasks-page">
       <h1 className="text-3xl font-bold mb-6 text-center">Takenlijst</h1>
 
       {/* Input voor nieuwe taken */}
