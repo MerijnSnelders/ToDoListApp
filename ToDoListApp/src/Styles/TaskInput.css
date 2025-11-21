@@ -1,0 +1,45 @@
+.task-input-container {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.task-input-container input {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db; /* light gray */
+  border-radius: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.task-input-container input:focus {
+  border-color: #6366f1; /* indigo */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.task-input-container button {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.task-input-container button.enabled {
+  background-color: #6366f1;
+  color: white;
+}
+
+.task-input-container button.enabled:hover {
+  background-color: #4f46e5;
+}
+
+.task-input-container button.disabled {
+  background-color: #9ca3af;
+  color: #374151;
+  cursor: not-allowed;
+}

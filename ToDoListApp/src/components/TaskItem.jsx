@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Check, Pencil, Trash2, Save } from "lucide-react";
 import { useGlobalState } from "../state/GlobalState";
-import "../index.css";
+import "../Styles/taskItem.css";
 
 const TaskItem = ({ task }) => {
   const { tasks } = useGlobalState();
@@ -65,9 +65,10 @@ const TaskItem = ({ task }) => {
       </button>
 
       {/* Tekst */}
-      <div className="flex-grow mx-4 min-w-0">
+      <div className="flex mx-4 min-w-0">
         {isEditing ? (
           <input
+            type="text"
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             onKeyDown={handleKeyDown}

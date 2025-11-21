@@ -1,0 +1,11 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-list p {
+  color: #9ca3af; /* gray-400 */
+  text-align: center;
+  margin-top: 1rem;
+}
