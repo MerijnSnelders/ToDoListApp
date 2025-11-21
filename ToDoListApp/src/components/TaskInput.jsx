@@ -7,7 +7,6 @@ const TaskInput = () => {
   const { tasks } = useGlobalState();
   const [inputText, setInputText] = useState("");
 
-  // --- GlobalState action ---
   const addTask = (text) => {
     if (!text.trim()) return;
 

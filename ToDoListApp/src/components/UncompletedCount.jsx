@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalState } from "../state/GlobalState"; // pad aanpassen indien nodig
+import { useGlobalState } from "../state/GlobalState"; 
 
 export default function UncompletedCount() {
   const { tasks = [] } = useGlobalState();

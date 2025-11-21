@@ -6,12 +6,10 @@ import "../Styles/taskItem.css";
 const TaskItem = ({ task }) => {
   const { tasks } = useGlobalState();
 
-  // Local UI state
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(task.text);
   const ignoreBlurRef = React.useRef(false);
 
-  // ---- GlobalState Actions ----
 
   const updateTasks = (updated) => {
     window.GlobalState.set({ tasks: updated });
@@ -36,7 +34,6 @@ const TaskItem = ({ task }) => {
     updateTasks(updated);
   };
 
-  // ---- UI Handlers ----
 
   const handleSave = () => {
     if (!editText.trim()) return;
@@ -48,7 +45,7 @@ const TaskItem = ({ task }) => {
     if (e.key === "Enter") handleSave();
     if (e.key === "Escape") {
       setIsEditing(false);
-      setEditText(task.text); // Reset tekst
+      setEditText(task.text);
     }
   };
 
