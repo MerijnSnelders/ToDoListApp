@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Check, Pencil, Trash2, Save } from "lucide-react";
 import { useGlobalState } from "../state/GlobalState";
+import "../index.css";
 
 const TaskItem = ({ task }) => {
   const { tasks } = useGlobalState();
@@ -8,6 +9,7 @@ const TaskItem = ({ task }) => {
   // Local UI state
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(task.text);
+  const ignoreBlurRef = React.useRef(false);
 
   // ---- GlobalState Actions ----
 
@@ -57,14 +59,7 @@ const TaskItem = ({ task }) => {
       {/* Checkbox */}
       <button
         onClick={() => toggleTask(task.id)}
-        className={`
-          w-8 h-8 flex items-center justify-center rounded-full border-2 transition-colors duration-200 flex-shrink-0
-          ${
-            task.completed
-              ? "bg-green-500 border-green-500 text-white shadow-md"
-              : "border-gray-300 text-transparent hover:border-indigo-500"
-          }
-        `}
+        className={`task-checkbox ${task.completed ? "checked" : ""}`}
       >
         {task.completed && <Check size={18} strokeWidth={3} />}
       </button>
@@ -76,9 +71,15 @@ const TaskItem = ({ task }) => {
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             onKeyDown={handleKeyDown}
-            onBlur={handleSave}
+            onBlur={() => {
+                            if (ignoreBlurRef.current) {
+                                ignoreBlurRef.current = false;
+                                return; // voorkom dubbele save
+                            }
+                            handleSave();
+                            }}
             autoFocus
-            className="w-full p-2 border border-indigo-400 rounded-lg focus:ring-indigo-500"
+            className="task-item input"
           />
         ) : (
           <p
@@ -93,9 +94,10 @@ const TaskItem = ({ task }) => {
       </div>
 
       {/* Acties */}
-      <div className="flex items-center space-x-2">
+      <div className="right flex items-center space-x-2">
         {isEditing ? (
           <button
+            onMouseDown={() => (ignoreBlurRef.current = true)}
             onClick={handleSave}
             disabled={!editText.trim()}
             className="p-2 bg-indigo-500 text-white rounded-lg shadow hover:bg-indigo-600 disabled:bg-gray-400"
